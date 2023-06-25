@@ -3,8 +3,11 @@ import React from 'react';
 const Loader: React.FC = () => {
   return (
     <div className="flex items-center justify-center h-screen">
-      <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-gray-900"></div>
+    <div className="flex">
+    <div className="w-20 h-20 rounded-full animate-spin
+                    border-8 border-solid border-purple-500 border-t-transparent shadow-md"></div>
     </div>
+  </div>
   );
 };
 
