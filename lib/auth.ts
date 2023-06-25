@@ -23,7 +23,12 @@ export const authOptions: NextAuthOptions = {
           type: "email",
           placeholder: "example@example.com",
         },
-        password: { label: "Password", type: "password" },
+
+        password: {
+          label: "Password",
+          type: "password",
+          placeholder: "password",
+        },
       },
       async authorize(credentials: any) {
         const { email, password } = credentials;
@@ -66,8 +71,9 @@ export const authOptions: NextAuthOptions = {
   jwt: {
     maxAge: 60 * 60,
   },
-  pages: {
-    signIn: "/",
-    signOut: "/",
-  },
+  debug: process.env.NODE_ENV === "development",
+  // pages: {
+  //   signIn: "api/auth/sigin",
+  //   signOut: "/",
+  // },
 };
