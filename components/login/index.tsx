@@ -117,19 +117,6 @@ const Login: React.FC = () => {
                     className="px-4 py-2 text-gray-400 transition duration-300 border border-gray-300 rounded focus:border-transparent focus:outline-none focus:ring-4 focus:ring-blue-200"
                   />
                 </div>
-                {/* <div className="flex items-center space-x-2">
-                  <input
-                    type="checkbox"
-                    id="remember"
-                    className="w-4 h-4 transition duration-300 rounded focus:ring-2 focus:ring-offset-0 focus:outline-none focus:ring-blue-200"
-                  />
-                  <label
-                    htmlFor="remember"
-                    className="text-sm font-semibold text-gray-500"
-                  >
-                    Remember me
-                  </label>
-                </div> */}
                 <div>
                   <button
                     type="submit"
@@ -182,22 +169,5 @@ const Login: React.FC = () => {
     </div>
   );
 };
-
-// export async function getServerSideProps({ req, res }: any) {
-//   const session = await getServerSession(req, res, authOptions);
-//   const user = session?.user;
-//   if (!session) {
-//     return {
-//       props: {
-//         user: null,
-//       },
-//     };
-//   }
-//   return {
-//     props: {
-//       user,
-//     },
-//   };
-// }
 
 export default Login;
