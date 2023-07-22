@@ -1,7 +1,10 @@
-"use client"
 
-import Image from 'next/image';
+"use client"
 import { useState } from 'react';
+import Image from 'next/image';
+import { MdOutlineNotificationsActive } from "react-icons/md";
+
+
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,39 +21,42 @@ const Navbar = () => {
             <div className="flex-shrink-0">
               <Image
                 className="h-8 w-8"
-                src="/vercel.svg"
+                src="/chmsus.webp"
                 alt="Logo"
-                height={200}
-                width={400}
+                height={100}
+                width={100}
               />
             </div>
-            <div className="hidden md:block">
-              <div className="ml-10 flex items-baseline space-x-4">
-                <a
-                  href="#"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                >
-                  Home
-                </a>
-                <a
-                  href="#"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                >
-                  About
-                </a>
-                <a
-                  href="#"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                >
-                  Services
-                </a>
-                <a
-                  href="#"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                >
-                  Contact
-                </a>
-              </div>
+          </div>
+          <div className="hidden md:block">
+            <div className="ml-10 flex align-end space-x-4">
+               <div className='flex items-center'>
+               <MdOutlineNotificationsActive className='text-white' />
+               </div>
+              <a
+                href="#"
+                className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+              >
+                Logout
+              </a>
+              {/* <a
+                href="#"
+                className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+              >
+                About
+              </a>
+              <a
+                href="#"
+                className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+              >
+                Services
+              </a>
+              <a
+                href="#"
+                className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+              >
+                Contact
+              </a> */}
             </div>
           </div>
           <div className="-mr-2 flex md:hidden">
@@ -98,13 +104,14 @@ const Navbar = () => {
       </div>
       <div className={`${isOpen ? 'block' : 'hidden'} md:hidden`} id="mobile-menu">
         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+        <MdOutlineNotificationsActive className='text-white' />
           <a
             href="#"
             className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
           >
-            Home
+            Logout
           </a>
-          <a
+          {/* <a
             href="#"
             className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
           >
@@ -121,7 +128,7 @@ const Navbar = () => {
             className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
           >
             Contact
-          </a>
+          </a> */}
         </div>
       </div>
     </nav>
