@@ -1,10 +1,20 @@
+"use client";
 import Image from "next/image";
 import React from "react";
 import { FcFeedback, FcLock } from "react-icons/fc";
+import { useRouter } from "next/navigation";
 
 const UserLogin = () => {
+  const router = useRouter();
+
+  const handleSubmit = () => {
+    router.push("/authenticated");
+  };
   return (
-    <div className="wrapper flex justify-center items-center min-h-screen bg-[#65F779] " style={{}}>
+    <div
+      className="wrapper flex justify-center items-center min-h-screen bg-[#65F779] "
+      style={{}}
+    >
       {/* <div className="absolute inset-0 ">
             <Image 
                 src="/background.jpg"
@@ -37,7 +47,7 @@ const UserLogin = () => {
           <h2 className="text-center text-xl text-[#162938] font-bold border-b-2 border-solid border-[#162938]">
             Register to Chmsu
           </h2>
-          <form action="#">
+          <form onSubmit={handleSubmit}>
             <div className="input-box relative w-full h-16 border-b-2 border-[#162938] my-8">
               <span className="icon absolute right-2 text-xl text-blue-900 text-center h-14 leading-14">
                 <FcFeedback className="absolute right-0 top-[2.5rem] text-2xl mt-[-2px]" />
@@ -67,7 +77,8 @@ const UserLogin = () => {
             </div>
             <div className="remember-forgot text-sm text-blue-900 font-semibold  flex justify-between">
               <label>
-                <input type="checkbox" className="mr-3 accent-[#162938]" /> Remember me
+                <input type="checkbox" className="mr-3 accent-[#162938]" />{" "}
+                Remember me
               </label>
               <a href="#" className="hover:underline">
                 Forgot Password?

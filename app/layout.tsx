@@ -1,7 +1,6 @@
 import "./globals.css";
 
 import Provider from "@/context/AuthContext";
-import SideNav from "@/components/sidenav/page";
 import ThemeProviderMode from "./themeProvider";
 
 export const metadata = {
@@ -17,12 +16,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Provider>
-          <ThemeProviderMode>
-            <main className="flex flex-row">
-              <SideNav />
-              <div className="ml-[255px]">{children}</div>
-            </main>
-          </ThemeProviderMode>
+          <ThemeProviderMode>{children}</ThemeProviderMode>
         </Provider>
       </body>
     </html>

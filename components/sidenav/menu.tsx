@@ -56,7 +56,7 @@ const Menu = () => {
             />
           </div>
         </div>
-        <MenuItem title="Logout" Icon={AiOutlineLogout} />
+        <MenuItem title="Logout" Icon={AiOutlineLogout} redirect="/login" />
       </div>
     </div>
   );

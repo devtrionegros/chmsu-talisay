@@ -1,14 +1,12 @@
 import React from "react";
-import LoginComponent from "@/components/login";
-
+import UserLoginComponent from "@/components/userlogin/page";
 
 const LoginPage: React.FC = () => {
   return (
     <div className="bg-gray-100 min-h-screen">
-      <LoginComponent />
+      <UserLoginComponent />
     </div>
   );
 };
 
 export default LoginPage;
-
