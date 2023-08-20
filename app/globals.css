@@ -2,18 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+html,
+body,
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  height: 100%;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+[data-theme="dark"] {
+  background-color: black;
 }
 
 body {
@@ -30,4 +26,7 @@ body {
 .input-box input:valid ~ label {
   top: 20px;
   font-size: 15px;
+}
+[data-theme="light"] {
+  background-color: rgb(243, 240, 240);
 }
