@@ -1,11 +1,15 @@
 import LoginComponent from "@/components/login";
+import SideNav from "@/components/sidenav/page";
 
 export default async function Home() {
   return (
-    <main className="">
-      <div className="bg-gray-100 min-h-screen">
-        <LoginComponent />
-      </div>
-    </main>
+    <div className="overflow-scroll">
+      <h1>Dashboard Baby!!!</h1>
+    </div>
+    // <main className="">
+    //   <div className="bg-gray-100 min-h-screen">
+    //     <LoginComponent />
+    //   </div>
+    // </main>
   );
 }
