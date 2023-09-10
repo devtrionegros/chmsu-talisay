@@ -1,6 +1,4 @@
 import React from "react";
-import ThemeColor from "@/components/hooks/theme";
-
 import MenuItem from "./menuItem";
 
 import {
@@ -16,8 +14,10 @@ import { CgMenuGridO } from "react-icons/cg";
 import { BsPlugin, BsMoon, BsSunFill } from "react-icons/bs";
 import { FaUsers, FaTools } from "react-icons/fa";
 import DarkMode from "../darkMode/page";
+import { useCustomTheme } from "@/lib/util";
+
 const Menu = () => {
-  const { isDarkTheme } = ThemeColor();
+  const { isDark } = useCustomTheme();
 
   return (
     <div className="h-3/4 flex flex-col items-start">
@@ -38,21 +38,21 @@ const Menu = () => {
         >
           <div
             className={`${
-              isDarkTheme ? "hover:bg-[#667A8A]" : "hover:bg-[#E9F5FE]"
+              isDark ? "hover:bg-[#667A8A]" : "hover:bg-[#E9F5FE]"
             } flex flex-row py-3 gap-3 px-4 rounded-sm items-center cursor-pointer transition`}
           >
-            {isDarkTheme ? (
+            {isDark ? (
               <BsMoon className="h-[12px] w-[12px] text-white" />
             ) : (
               <BsSunFill className="h-[12px] w-[12px] text-[#5D7285]" />
             )}
-            <h4 className={isDarkTheme ? "text-[#FFFFFF]" : "text-[#5D7285]"}>
-              {isDarkTheme ? "Dark" : "Light"} Mode
+            <h4 className={isDark ? "text-[#FFFFFF]" : "text-[#5D7285]"}>
+              {isDark ? "Dark" : "Light"} Mode
             </h4>
             <DarkMode
               name="logout"
               defaultChecked={true}
-              enabled={isDarkTheme ? true : false}
+              enabled={isDark ? true : false}
             />
           </div>
         </div>

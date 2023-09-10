@@ -1,5 +1,5 @@
+import { useCustomTheme } from "@/lib/util";
 import { Switch } from "@headlessui/react";
-import { useTheme } from "next-themes";
 import React, { Fragment, useEffect, useState } from "react";
 
 interface DarkModeProps {
@@ -13,9 +13,7 @@ const DarkMode: React.FC<DarkModeProps> = ({
   enabled,
 }) => {
   const [mounted, setMounted] = useState(false);
-  const { theme, setTheme } = useTheme();
-  console.log(theme);
-
+  const { setTheme, theme } = useCustomTheme();
   useEffect(() => {
     setMounted(true);
   }, []);
