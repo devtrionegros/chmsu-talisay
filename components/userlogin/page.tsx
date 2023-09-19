@@ -7,7 +7,8 @@ import { useRouter } from "next/navigation";
 const UserLogin = () => {
   const router = useRouter();
 
-  const handleSubmit = () => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     router.push("/authenticated");
   };
   return (
