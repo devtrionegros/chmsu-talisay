@@ -1,5 +1,5 @@
 import React from "react";
-import MenuItem from "./menuItem";
+import MenuItem from "@/components/Sidenav/MenuItem";
 
 import {
   AiFillHome,
@@ -13,7 +13,7 @@ import { LiaComments } from "react-icons/lia";
 import { CgMenuGridO } from "react-icons/cg";
 import { BsPlugin, BsMoon, BsSunFill } from "react-icons/bs";
 import { FaUsers, FaTools } from "react-icons/fa";
-import DarkMode from "../darkMode/page";
+import DarkMode from "../DarkMode";
 import { useCustomTheme } from "@/lib/util";
 
 const Menu = () => {

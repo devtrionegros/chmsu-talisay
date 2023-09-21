@@ -2,8 +2,8 @@
 import React from "react";
 
 import { Poppins } from "next/font/google";
-import Menu from "./menu";
 import { useCustomTheme } from "@/lib/util";
+import Menu from "@/components/Sidenav/Menu";
 
 const poppins = Poppins({
   subsets: ["latin"],

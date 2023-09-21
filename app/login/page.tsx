@@ -1,5 +1,5 @@
 import React from "react";
-import UserLoginComponent from "@/components/userlogin/page";
+import UserLoginComponent from "@/components/UserLogin";
 
 const LoginPage: React.FC = () => {
   return (

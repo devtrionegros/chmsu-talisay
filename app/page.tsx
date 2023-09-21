@@ -1,5 +1,5 @@
-import LoginComponent from "@/components/login";
-import SideNav from "@/components/sidenav/page";
+import LoginComponent from "@/components/Login";
+import SideNav from "@/components/Sidenav";
 
 export default async function Home() {
   return (
