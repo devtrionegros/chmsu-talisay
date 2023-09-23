@@ -16,13 +16,20 @@ export type InputProps = {
 
 interface UploadProps {
   label: string;
+  name: string;
 }
 
 interface SelectProps {
   selectLists: ListProps[];
   label: string;
+  name: string;
 }
 
 interface ListProps {
   name: string;
+}
+
+interface FadeProps {
+  children: React.ReactNode;
+  show: boolean;
 }
