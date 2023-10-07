@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import MenuItem from "@/components/Sidenav/MenuItem";
+import MenuItem from "@/components/Reusable/Sidenav/MenuItem";
 
 import {
   AiFillHome,
@@ -14,24 +14,26 @@ import { LiaComments } from "react-icons/lia";
 import { CgMenuGridO } from "react-icons/cg";
 import { BsPlugin, BsMoon, BsSunFill } from "react-icons/bs";
 import { FaUsers, FaTools } from "react-icons/fa";
-import DarkMode from "../DarkMode";
+import DarkMode from "../../DarkMode";
 import { useCustomTheme } from "@/lib/util";
 
 const Menu = () => {
   const { isDark } = useCustomTheme();
 
   return (
-    <div className="h-3/4 flex flex-col items-start">
-      <MenuItem title="Dashboard" Icon={AiFillHome} />
-      <MenuItem title="Posts" Icon={AiFillEdit} />
-      <MenuItem title="Media" Icon={MdPermMedia} />
-      <MenuItem title="Pages" Icon={SiPowerpages} />
-      <MenuItem title="Comments" Icon={LiaComments} />
-      <MenuItem title="Appearance" Icon={CgMenuGridO} />
-      <MenuItem title="Plugins" Icon={BsPlugin} />
-      <MenuItem title="Users" Icon={FaUsers} />
-      <MenuItem title="Settings" Icon={AiFillSetting} />
-      <MenuItem title="Tools" Icon={FaTools} />
+    <div>
+      <div className="h-3/4 flex flex-1 flex-col items-start">
+        <MenuItem title="Dashboard" Icon={AiFillHome} />
+        <MenuItem title="Posts" Icon={AiFillEdit} />
+        <MenuItem title="Media" Icon={MdPermMedia} />
+        <MenuItem title="Pages" Icon={SiPowerpages} />
+        <MenuItem title="Comments" Icon={LiaComments} />
+        <MenuItem title="Appearance" Icon={CgMenuGridO} />
+        <MenuItem title="Plugins" Icon={BsPlugin} />
+        <MenuItem title="Users" Icon={FaUsers} />
+        <MenuItem title="Settings" Icon={AiFillSetting} />
+        <MenuItem title="Tools" Icon={FaTools} />
+      </div>
       <div className="mt-10 ">
         <div
           className="flex flex-row items-center w-[205px]"

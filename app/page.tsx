@@ -1,6 +1,3 @@
-import LoginComponent from "@/components/Login";
-import SideNav from "@/components/Sidenav";
-
 export default async function Home() {
   return (
     <div className="overflow-scroll">

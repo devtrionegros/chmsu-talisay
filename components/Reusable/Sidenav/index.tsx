@@ -3,7 +3,7 @@ import React from "react";
 
 import { Poppins } from "next/font/google";
 import { useCustomTheme } from "@/lib/util";
-import Menu from "@/components/Sidenav/Menu";
+import Menu from "@/components/Reusable/Sidenav/Menu";
 
 const poppins = Poppins({
   subsets: ["latin"],

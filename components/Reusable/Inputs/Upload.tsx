@@ -4,13 +4,15 @@ import { UploadProps } from "@/lib/type";
 import { useFormContext } from "react-hook-form";
 import { twMerge } from "tailwind-merge";
 import Fade from "../Transitions/Fade";
-const Upload: React.FC<UploadProps> = ({ label, name }) => {
+import Image from "next/image";
+const Upload = ({ label, name }: UploadProps) => {
   const {
     setValue,
     formState: { errors },
   } = useFormContext();
 
   const [isDragging, setIsDragging] = useState<boolean>(false);
+  const [imageUrl, setImageUrl] = useState<string | null>(null);
 
   const handleDragEnter = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
@@ -42,6 +44,7 @@ const Upload: React.FC<UploadProps> = ({ label, name }) => {
     const selectedFile = event.target.files[0];
     if (selectedFile) {
       console.log("Selected file:", selectedFile);
+      setImageUrl(URL.createObjectURL(selectedFile));
       setValue(name, selectedFile, { shouldValidate: true });
     }
   };
@@ -67,19 +70,30 @@ const Upload: React.FC<UploadProps> = ({ label, name }) => {
           onDragOver={handleDragOver}
           onDrop={handleDrop}
         >
-          <div className="text-center">
-            <svg
-              className="mx-auto h-12 w-12 text-gray-300"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              aria-hidden="true"
-            >
-              <path
-                fillRule="evenodd"
-                d="M1.5 6a2.25 2.25 0 012.25-2.25h16.5A2.25 2.25 0 0122.5 6v12a2.25 2.25 0 01-2.25 2.25H3.75A2.25 2.25 0 011.5 18V6zM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0021 18v-1.94l-2.69-2.689a1.5 1.5 0 00-2.12 0l-.88.879.97.97a.75.75 0 11-1.06 1.06l-5.16-5.159a1.5 1.5 0 00-2.12 0L3 16.061zm10.125-7.81a1.125 1.125 0 112.25 0 1.125 1.125 0 01-2.25 0z"
-                clipRule="evenodd"
+          <div className="flex flex-col justify-center items-center text-center">
+            {imageUrl ? (
+              <Image
+                src={imageUrl}
+                height={100}
+                width={100}
+                className=" rounded-3xl"
+                alt="Profile"
               />
-            </svg>
+            ) : (
+              <svg
+                className="mx-auto h-12 w-12 text-gray-300"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M1.5 6a2.25 2.25 0 012.25-2.25h16.5A2.25 2.25 0 0122.5 6v12a2.25 2.25 0 01-2.25 2.25H3.75A2.25 2.25 0 011.5 18V6zM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0021 18v-1.94l-2.69-2.689a1.5 1.5 0 00-2.12 0l-.88.879.97.97a.75.75 0 11-1.06 1.06l-5.16-5.159a1.5 1.5 0 00-2.12 0L3 16.061zm10.125-7.81a1.125 1.125 0 112.25 0 1.125 1.125 0 01-2.25 0z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            )}
+
             <div className="mt-4 flex text-sm leading-6 text-gray-600">
               <label
                 htmlFor="file-upload"
@@ -90,6 +104,7 @@ const Upload: React.FC<UploadProps> = ({ label, name }) => {
                   id="file-upload"
                   name="file-upload"
                   type="file"
+                  accept="image/*"
                   className="sr-only"
                   onChange={fileUpload}
                 />

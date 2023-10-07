@@ -7,11 +7,7 @@ interface DarkModeProps {
   defaultChecked: boolean;
   enabled: boolean;
 }
-const DarkMode: React.FC<DarkModeProps> = ({
-  name,
-  defaultChecked,
-  enabled,
-}) => {
+const DarkMode = ({ name, defaultChecked, enabled }: DarkModeProps) => {
   const [mounted, setMounted] = useState(false);
   const { setTheme, theme } = useCustomTheme();
   useEffect(() => {

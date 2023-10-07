@@ -10,7 +10,7 @@ interface MenuItemProps {
   redirect?: string;
 }
 
-const MenuItem: React.FC<MenuItemProps> = ({ title, Icon, redirect }) => {
+const MenuItem = ({ title, Icon, redirect }: MenuItemProps) => {
   const { isDark } = useCustomTheme();
 
   const router = useRouter();

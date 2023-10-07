@@ -5,7 +5,7 @@ import { ThemeProvider } from "next-themes";
 interface ThemeProviderModeProps {
   children: React.ReactNode;
 }
-const ThemeProviderMode: React.FC<ThemeProviderModeProps> = ({ children }) => {
+const ThemeProviderMode = ({ children }: ThemeProviderModeProps) => {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {

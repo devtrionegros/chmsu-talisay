@@ -4,12 +4,7 @@ import { useFormContext } from "react-hook-form";
 import Fade from "../Transitions/Fade";
 import { twMerge } from "tailwind-merge";
 
-const TextField: React.FC<InputProps> = ({
-  type,
-  label,
-  placeholder,
-  name,
-}) => {
+const TextField = ({ type, label, placeholder, name }: InputProps) => {
   const { register, formState } = useFormContext();
   const { errors } = formState || {};
 

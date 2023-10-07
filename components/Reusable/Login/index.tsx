@@ -4,7 +4,7 @@ import { Credentials } from "@/lib/type";
 import { signIn, signOut } from "next-auth/react";
 import { getServerSession } from "next-auth/next";
 import { useRouter } from "next/router";
-const Login: React.FC = () => {
+const Login = () => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [cred, setCred] = useState<Credentials>({
     email: "",

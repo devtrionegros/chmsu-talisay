@@ -33,3 +33,7 @@ interface FadeProps {
   children: React.ReactNode;
   show: boolean;
 }
+
+interface DropdownProps {
+  children: React.ReactNode;
+}

@@ -1,5 +1,5 @@
 "use client";
-import SideNav from "@/components/Sidenav";
+import SideNav from "@/components/Reusable/Sidenav";
 
 export default function RootLayout({
   children,
@@ -11,7 +11,7 @@ export default function RootLayout({
       <div className="hidden md:block">
         <SideNav />
       </div>
-      <div className="flex-1 md:ml-[255px]">{children}</div>
+      <div className="flex-1 md:ml-[255px] relative  w-full ">{children}</div>
     </div>
   );
 }

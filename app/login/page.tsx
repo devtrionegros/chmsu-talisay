@@ -1,7 +1,7 @@
 import React from "react";
 import UserLoginComponent from "@/components/UserLogin";
 
-const LoginPage: React.FC = () => {
+const LoginPage = () => {
   return (
     <div className="bg-gray-100 min-h-screen">
       <UserLoginComponent />

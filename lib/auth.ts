@@ -8,26 +8,15 @@ import bcrypt from "bcrypt";
 
 export const authOptions: NextAuthOptions = {
   providers: [
-    // GithubProvider({
-    //     clientId: process.env.GITHUB_ID,
-    //     clientSecret: process.env.GITHUB_SECRET,
-    // }),
-    // GoogleProvider({
-    //     clientId: process.env.GOOGLE_ID,
-    //     clientSecret: process.env.GOOGLE_SECRET,
-    // }),
     CredentialsProvider({
       name: "credentials",
       credentials: {
-        email: { label: "Email", type: "text", placeholder: "jsmith" },
+        email: { label: "Email", type: "text" },
         password: { label: "Password", type: "password" },
-        username: {
-          label: "Username",
-          type: "text",
-          placeholder: "John Smith",
-        },
       },
       async authorize(credentials) {
+        console.log(credentials);
+
         // check to see if email and password is there
         if (!credentials?.email || !credentials?.password) {
           throw new Error("Please enter an email and password");
@@ -47,7 +36,6 @@ export const authOptions: NextAuthOptions = {
           credentials.password,
           user.password
         );
-        console.log(passwordMatch);
 
         // if password does not match
         if (!passwordMatch) {
@@ -60,6 +48,7 @@ export const authOptions: NextAuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,
   session: {
     strategy: "jwt",
+    maxAge: 10,
   },
   debug: process.env.NODE_ENV === "development",
 };
