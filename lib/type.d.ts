@@ -36,4 +36,5 @@ interface FadeProps {
 
 interface DropdownProps {
   children: React.ReactNode;
+  name?: string;
 }

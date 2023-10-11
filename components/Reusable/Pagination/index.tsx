@@ -1,9 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import Dropdown from "../Dropdown";
-
-import { Menu } from "@headlessui/react";
 
 const Pagination = ({
   startIndex,

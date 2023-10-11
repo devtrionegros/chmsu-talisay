@@ -1,8 +1,14 @@
+import { Suspense } from "react";
+
+import Loading from "../loading";
 import UserComponent from "@/components/Routes/Admin/User";
-import React from "react";
 
 const User = () => {
-  return <UserComponent />;
+  return (
+    <Suspense fallback={<Loading />}>
+      <UserComponent />
+    </Suspense>
+  );
 };
 
 export default User;

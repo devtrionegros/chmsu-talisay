@@ -1,20 +1,26 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-const usePagination = (initialItemsPerPage: number, initialData: any) => {
+const usePagination = (
+  initialItemsPerPage: number,
+  initialData: any,
+  totalItems: number
+) => {
   const [currentPage, setCurrentPage] = useState(1);
-
+  const [currentItems, setCurrentItems] = useState<any>();
   const startIndex = (currentPage - 1) * initialItemsPerPage;
   const endIndex = startIndex + initialItemsPerPage;
-  const currentItems = initialData.slice(startIndex, endIndex);
-
-  const totalPages = Math.ceil(initialData.length / initialItemsPerPage);
+  const totalPages = Math.ceil(totalItems / initialItemsPerPage);
 
   const handlePageChange = (page: number) => {
     if (page >= 1 && page <= totalPages) {
       setCurrentPage(page);
     }
   };
+
+  useEffect(() => {
+    setCurrentItems(initialData);
+  }, [initialData]);
 
   return {
     startIndex,

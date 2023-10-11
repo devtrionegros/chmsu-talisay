@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import { Button, Select, TextField, Upload } from "@/components/Reusable";
 import { Gender, EmploymentStatus, Campus } from "@/lib/util";
@@ -7,7 +5,7 @@ import { useForm, FormProvider } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { UserSchema } from "@/lib/schema";
 
-const DasboardComponent = () => {
+const UserAddModalContent = () => {
   const methods = useForm({
     resolver: yupResolver(UserSchema),
   });
@@ -69,4 +67,4 @@ const DasboardComponent = () => {
   );
 };
 
-export default DasboardComponent;
+export default UserAddModalContent;

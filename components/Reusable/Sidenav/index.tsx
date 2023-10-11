@@ -3,7 +3,7 @@ import React from "react";
 
 import { Poppins } from "next/font/google";
 import { useCustomTheme } from "@/lib/util";
-import Menu from "@/components/Reusable/Sidenav/Menu";
+import { Menu } from "@/components/Reusable";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -19,7 +19,7 @@ const SideNav = () => {
         className={`hidden md:block  ${
           isDark ? "bg-[#031C30]" : "bg-[#FFFFFF] border-r-[1px]"
         }
-       fixed h-screen p-6 w-[250px]  shadow-md xl:w-[300px] z-10 overflow-y-scroll `}
+       fixed h-full p-6 w-[250px]  shadow-md xl:w-[300px] z-10 overflow-y-scroll `}
       >
         <div
           className={`${

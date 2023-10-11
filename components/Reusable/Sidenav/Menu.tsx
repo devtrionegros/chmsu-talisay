@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import MenuItem from "@/components/Reusable/Sidenav/MenuItem";
+import { MenuItem } from "@/components/Reusable";
 
 import {
   AiFillHome,
