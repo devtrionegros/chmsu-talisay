@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useReducer, useState } from "react";
+import React, { useEffect, useReducer } from "react";
 import { Menu } from "@headlessui/react";
 import {
   DeleteActiveIcon,
@@ -12,24 +12,16 @@ import {
 import { getUsers } from "@/lib/apicalls";
 import { initialState, loadingReducer } from "./Hooks/useReducerUsers";
 import LoadingComponent from "@/components/Reusable/Loading";
+import { userTableHeaders, itemsPerPage, itemsPerApiCall } from "@/lib/util";
 const iconClassName = {
   className: "mr-2 h-5 w-5 text-violet-400",
   "aria-hidden": true,
 };
 
-const itemsPerPage = 10;
-const headers = [
-  "Username",
-  "Email",
-  "Role",
-  "Address",
-  "Mobile Number",
-  "Action",
-];
-
 const UserTable = () => {
   const [state, dispatch] = useReducer(loadingReducer, initialState);
   const { loading, users, totalUsers } = state;
+
   const {
     currentItems,
     currentPage,
@@ -40,14 +32,18 @@ const UserTable = () => {
   } = usePagination(itemsPerPage, users, totalUsers);
 
   useEffect(() => {
-    fectchUsers();
+    const shouldFetchData =
+      (startIndex === 0 && users.length === 0) || endIndex > users.length;
+    if (shouldFetchData) {
+      fetchUsers();
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [startIndex, endIndex]);
+  }, [startIndex, endIndex, users]);
 
-  const fectchUsers = async () => {
+  const fetchUsers = async () => {
     dispatch({ type: "LOADING_START" });
     const response = await fetch(
-      `${getUsers}?startIndex=${startIndex}&itemsPerPage=${itemsPerPage}`
+      `${getUsers}?startIndex=${startIndex}&itemsPerCall=${itemsPerApiCall}`
     );
     const { users, usersLength } = await response.json();
     dispatch({ type: "LOADING_END", users, totalUsers: usersLength });
@@ -70,28 +66,30 @@ const UserTable = () => {
       // click: deleteUser,
     },
   ];
-  if (loading) return <LoadingComponent />;
-  if (!users?.length)
-    return <div className="text-center">No Records Found</div>;
+  if (loading && !users.length) return <LoadingComponent />;
+  if (!users?.length) {
+    return <div className="text-center ">No Records Found</div>;
+  }
+
   return (
     <div>
       <div className="relative overflow-x-auto shadow-sm sm:rounded-lg p-5">
-        <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-          <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <table className="w-full text-sm text-left text-gray-500 ">
+          <thead className="text-xs text-gray-700 uppercase bg-gray-50 ">
             <tr>
               <th scope="col" className="p-4">
                 <div className="flex items-center">
                   <input
                     id="checkbox-all"
                     type="checkbox"
-                    className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                    className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500  focus:ring-2 "
                   />
                   <label htmlFor="checkbox-all" className="sr-only">
                     checkbox
                   </label>
                 </div>
               </th>
-              {headers.map((header) => (
+              {userTableHeaders.map((header) => (
                 <th scope="col" className="px-6 py-3" key={header}>
                   {header}
                 </th>
@@ -100,17 +98,14 @@ const UserTable = () => {
           </thead>
           <tbody>
             {currentItems.map(({ id, username, email, role, profile }: any) => (
-              <tr
-                key={id}
-                className="bg-white border-b dark:bg-gray-900 dark:border-gray-700"
-              >
+              <tr key={id} className="bg-white border-b ">
                 <td className="w-4 p-4">
                   <div className="flex items-center">
                     <input
                       aria-label="checkbox"
                       id={`checkbox-table-${id}`}
                       type="checkbox"
-                      className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                      className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2 "
                     />
                     <label htmlFor="checkbox-table-1" className="sr-only">
                       checkbox
@@ -119,7 +114,7 @@ const UserTable = () => {
                 </td>
                 <th
                   scope="row"
-                  className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                  className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
                 >
                   {username}
                 </th>

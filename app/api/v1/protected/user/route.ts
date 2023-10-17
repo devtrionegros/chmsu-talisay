@@ -12,11 +12,11 @@ export async function GET(request: NextRequest) {
   try {
     const searchParams = request.nextUrl.searchParams;
     const start_index = searchParams.get("startIndex");
-    const items_per_page = searchParams.get("itemsPerPage");
+    const items_per_api_call = searchParams.get("itemsPerCall");
 
     const [users, users_length] = await Promise.all([
       await prisma.user.findMany({
-        take: Number(items_per_page),
+        take: Number(items_per_api_call),
         skip: Number(start_index),
         include: {
           profile: true,

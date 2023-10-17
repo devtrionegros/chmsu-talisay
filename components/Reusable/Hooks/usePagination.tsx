@@ -19,8 +19,9 @@ const usePagination = (
   };
 
   useEffect(() => {
-    setCurrentItems(initialData);
-  }, [initialData]);
+    const data = initialData.slice(startIndex, endIndex);
+    setCurrentItems(data);
+  }, [endIndex, initialData, startIndex]);
 
   return {
     startIndex,

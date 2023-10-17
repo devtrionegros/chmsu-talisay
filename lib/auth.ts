@@ -4,7 +4,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
 import GithubProvider from "next-auth/providers/github";
 import { NextAuthOptions } from "next-auth";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -32,7 +32,7 @@ export const authOptions: NextAuthOptions = {
         }
 
         // check to see if password matches
-        const passwordMatch = await bcrypt.compare(
+        const passwordMatch = await bcrypt.compareSync(
           credentials.password,
           user.password
         );

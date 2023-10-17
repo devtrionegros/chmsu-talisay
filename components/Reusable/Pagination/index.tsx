@@ -16,13 +16,13 @@ const Pagination = ({
         className="flex items-center justify-between pt-4"
         aria-label="Table navigation"
       >
-        <span className="text-sm font-normal text-gray-500 dark:text-gray-400">
+        <span className="text-sm font-normal text-gray-500 ">
           Showing{" "}
-          <span className="font-semibold text-gray-900 dark:text-white">
+          <span className="font-semibold text-gray-900 ">
             {startIndex + 1}-{Math.min(endIndex, tableDataLength)}
           </span>{" "}
           of{" "}
-          <span className="font-semibold text-gray-900 dark:text-white">
+          <span className="font-semibold text-gray-900 ">
             {tableDataLength}
           </span>
         </span>
@@ -30,7 +30,7 @@ const Pagination = ({
           <li>
             <button
               onClick={() => handlePageChange(currentPage - 1)}
-              className={`flex items-center justify-center px-3 h-8 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white ${
+              className={`flex items-center justify-center px-3 h-8 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700  ${
                 currentPage === 1 ? "cursor-not-allowed" : "cursor-pointer"
               }`}
               disabled={currentPage === 1}
@@ -44,8 +44,8 @@ const Pagination = ({
                 onClick={() => handlePageChange(index + 1)}
                 className={`flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 ${
                   currentPage === index + 1
-                    ? "bg-blue-50 text-blue-600 hover:bg-blue-100 hover:text-blue-700 dark:bg-gray-700 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:hover:text-white"
-                    : "hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                    ? "cursor-not-allowed font-bold bg-blue-100 text-blue-600 hover:bg-blue-200 hover:text-blue-700 "
+                    : "hover:bg-gray-100 hover:text-gray-700 "
                 }`}
               >
                 {index + 1}
@@ -55,7 +55,7 @@ const Pagination = ({
           <li>
             <button
               onClick={() => handlePageChange(currentPage + 1)}
-              className={`flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white ${
+              className={`flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700  ${
                 currentPage === totalPages
                   ? "cursor-not-allowed"
                   : "cursor-pointer"

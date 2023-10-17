@@ -12,7 +12,7 @@ export const loadingReducer = (state: any, action: any) => {
       return {
         ...state,
         loading: false,
-        users: action.users,
+        users: [...state.users, ...action.users],
         totalUsers: action.totalUsers,
       };
     default:

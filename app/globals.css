@@ -14,7 +14,12 @@ body,
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
   height: 100vh;
 }
 
@@ -29,4 +34,16 @@ body {
 }
 [data-theme="light"] {
   background-color: rgb(243, 240, 240);
+}
+
+/* fonts */
+
+.capriola {
+  font-family: var(--font-capriola);
+}
+
+.advent {
+  font-family: var(--font-advent-pro);
+  font-weight: 200;
+  color: #5c5cff;
 }

@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 
 const prisma = new PrismaClient();
 
@@ -7,7 +7,7 @@ const seed = async () => {
   try {
     const users = [];
 
-    const password = await bcrypt.hash("password123", 10);
+    const password = await bcrypt.hashSync("password123", 10);
 
     for (let i = 0; i < 10; i++) {
       users.push({
