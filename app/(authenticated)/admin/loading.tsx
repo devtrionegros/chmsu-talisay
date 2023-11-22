@@ -1,4 +1,4 @@
-import LoadingComponent from "@/components/Reusable/Loading";
+import LoadingComponent from "@/components/Shared/Loading";
 import React from "react";
 const Loading = () => {
   return <LoadingComponent />;

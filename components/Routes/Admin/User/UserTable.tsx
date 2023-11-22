@@ -8,10 +8,10 @@ import {
   Pagination,
   usePagination,
   Dropdown,
-} from "@/components/Reusable";
+} from "@/components/Shared";
 import { getUsers } from "@/lib/apicalls";
 import { initialState, loadingReducer } from "./Hooks/useReducerUsers";
-import LoadingComponent from "@/components/Reusable/Loading";
+import LoadingComponent from "@/components/Shared/Loading";
 import { userTableHeaders, itemsPerPage, itemsPerApiCall } from "@/lib/util";
 const iconClassName = {
   className: "mr-2 h-5 w-5 text-violet-400",
@@ -38,13 +38,15 @@ const UserTable = () => {
       fetchUsers();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [startIndex, endIndex, users]);
+  }, [startIndex, endIndex]);
 
   const fetchUsers = async () => {
     dispatch({ type: "LOADING_START" });
     const response = await fetch(
       `${getUsers}?startIndex=${startIndex}&itemsPerCall=${itemsPerApiCall}`
     );
+    console.log(response);
+    
     const { users, usersLength } = await response.json();
     dispatch({ type: "LOADING_END", users, totalUsers: usersLength });
   };
@@ -120,8 +122,8 @@ const UserTable = () => {
                 </th>
                 <td className="px-6 py-4">{email}</td>
                 <td className="px-6 py-4">{role}</td>
-                <td className="px-6 py-4">{profile.address}</td>
-                <td className="px-6 py-4">{profile.mobileNumber}</td>
+                <td className="px-6 py-4">{profile?.address}</td>
+                <td className="px-6 py-4">{profile?.mobileNumber}</td>
                 <td className="px-6 py-4">
                   <Dropdown name="Options">
                     <div>

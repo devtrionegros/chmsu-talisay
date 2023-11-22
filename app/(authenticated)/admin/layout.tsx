@@ -1,5 +1,5 @@
 "use client";
-import { SideNav } from "@/components/Reusable";
+import { SideNav } from "@/components/Shared";
 
 export default function RootLayout({
   children,

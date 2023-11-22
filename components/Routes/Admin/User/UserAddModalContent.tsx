@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Select, TextField, Upload } from "@/components/Reusable";
+import { Button, Select, TextField, Upload } from "@/components/Shared";
 import { Gender, EmploymentStatus, Campus } from "@/lib/util";
 import { useForm, FormProvider } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";

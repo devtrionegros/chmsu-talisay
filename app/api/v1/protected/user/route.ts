@@ -21,6 +21,9 @@ export async function GET(request: NextRequest) {
         include: {
           profile: true,
         },
+        orderBy: {
+          createdAt: "asc"
+        }
       }),
       await prisma.user.count(),
     ]);
@@ -31,6 +34,8 @@ export async function GET(request: NextRequest) {
       usersLength: users_length,
     });
   } catch (error) {
+    console.log(error);
+    
     return new NextResponse(null, {
       status: 500,
       statusText: "INTERNAL_SERVER_ERROR",

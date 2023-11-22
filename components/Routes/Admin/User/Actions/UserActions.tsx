@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { Menu } from "@headlessui/react";
-import { Dropdown, AddIcon, Modal } from "@/components/Reusable";
+import { Dropdown, AddIcon, Modal } from "@/components/Shared";
 import UseModal from "../Hooks/useModal";
 import UserAddModalContent from "../UserAddModalContent";
 
