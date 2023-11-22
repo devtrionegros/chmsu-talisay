@@ -5,6 +5,7 @@ import GoogleProvider from "next-auth/providers/google";
 import GithubProvider from "next-auth/providers/github";
 import { NextAuthOptions } from "next-auth";
 import bcrypt from "bcryptjs";
+import _ from "lodash"
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -15,36 +16,61 @@ export const authOptions: NextAuthOptions = {
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-        console.log(credentials);
-
         // check to see if email and password is there
         if (!credentials?.email || !credentials?.password) {
           throw new Error("Please enter an email and password");
         }
-        const user = await prisma.user.findUnique({
-          where: {
-            email: credentials.email,
-          },
-        });
+        try {
+          const user = await prisma.user.findUnique({
+            where: {
+              email: credentials.email,
+            },
+          });
+  
+          if (!user || !user?.password) {
+            throw new Error("Incorrect email or password");
+          }
+  
+          // check to see if password matches
+          const passwordMatch = await bcrypt.compareSync(
+            credentials.password,
+            user.password
+          );
 
-        if (!user || !user?.password) {
-          throw new Error("No Email found");
+          // if password does not match
+          if (!passwordMatch) {
+            throw new Error("Incorrect email or password");
+          }
+          
+          const removedSensitiveData = _.omit(user, ['password']);
+          return removedSensitiveData
+        } catch (error) {
+          console.log(error);
+          throw new Error("Something went wrong");
         }
-
-        // check to see if password matches
-        const passwordMatch = await bcrypt.compareSync(
-          credentials.password,
-          user.password
-        );
-
-        // if password does not match
-        if (!passwordMatch) {
-          throw new Error("Incorrect password");
-        }
-        return user;
+    
       },
     }),
   ],
+  callbacks: {
+    async jwt({ token, user }: any) {
+        
+      /* Step 1: update the token based on the user object */
+      if (user) {
+        token.user = user
+      }
+      return token;
+    },
+    session({ session, token }: any) {
+      //  Step 2: update the session.user based on the token object */
+       if (token && session.user) {
+         session.user = token.user;
+       }
+       console.log(session);
+       
+      return session;
+    },
+  },
   secret: process.env.NEXTAUTH_SECRET,
   session: {
     strategy: "jwt",

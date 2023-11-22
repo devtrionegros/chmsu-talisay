@@ -9,7 +9,7 @@ export interface Props {
 
 export type InputProps = {
   label: string;
-  type: "string" | "number" | "email";
+  type: "string" | "number" | "email" | "password";
   placeholder: string;
   name: string;
 };
