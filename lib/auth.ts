@@ -5,7 +5,7 @@ import GoogleProvider from "next-auth/providers/google";
 import GithubProvider from "next-auth/providers/github";
 import { NextAuthOptions } from "next-auth";
 import bcrypt from "bcryptjs";
-import _ from "lodash"
+import _ from "lodash";
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -26,11 +26,11 @@ export const authOptions: NextAuthOptions = {
               email: credentials.email,
             },
           });
-  
+
           if (!user || !user?.password) {
             throw new Error("Incorrect email or password");
           }
-  
+
           // check to see if password matches
           const passwordMatch = await bcrypt.compareSync(
             credentials.password,
@@ -41,37 +41,40 @@ export const authOptions: NextAuthOptions = {
           if (!passwordMatch) {
             throw new Error("Incorrect email or password");
           }
-          
-          const removedSensitiveData = _.omit(user, ['password']);
-          return removedSensitiveData
+
+          const removedSensitiveData = _.omit(user, ["password"]);
+          return removedSensitiveData;
         } catch (error) {
           console.log(error);
           throw new Error("Something went wrong");
         }
-    
       },
     }),
   ],
   callbacks: {
     async jwt({ token, user }: any) {
-        
       /* Step 1: update the token based on the user object */
       if (user) {
-        token.user = user
+        token.role = user.role;
+        token.user = user;
       }
       return token;
     },
     session({ session, token }: any) {
       //  Step 2: update the session.user based on the token object */
-       if (token && session.user) {
-         session.user = token.user;
-       }
-       console.log(session);
-       
+      if (token && session.user) {
+        session.user.role = token.role;
+        session.user = token.user;
+      }
+      console.log(session);
+
       return session;
     },
   },
   secret: process.env.NEXTAUTH_SECRET,
+  pages: {
+    signIn: "/login",
+  },
   session: {
     strategy: "jwt",
     maxAge: 600,

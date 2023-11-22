@@ -4,15 +4,18 @@ import Loading from "../loading";
 import UserComponent from "@/components/Routes/Admin/User";
 import { getServerSession } from "next-auth"
 import { authOptions } from "@/lib/auth";
+import { redirect } from "next/navigation";
 
 const User = async() => {
-  const session = await getServerSession(authOptions)
-  console.log(session);
+  // const session = await getServerSession(authOptions)
+  // console.log(session);
+  
   
   return (
-    <Suspense fallback={<Loading />}>
+      <Suspense fallback={<Loading />}>
       <UserComponent />
     </Suspense>
+  
   );
 };
 
