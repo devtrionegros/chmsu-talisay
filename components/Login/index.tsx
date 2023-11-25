@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { getSession, signIn } from "next-auth/react";
 import { UserObject } from "@/lib/type";
@@ -15,6 +15,7 @@ const LoginComponent = () => {
     email: "",
     password: "",
   });
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
@@ -30,11 +31,10 @@ const LoginComponent = () => {
 
       if (result?.status === 200 && result?.error === null) {
         const session = (await getSession()) as UserObject;
-        console.log(session);
 
         if (session) {
           toast.success(`Welcome ${session.user.email}`);
-          router.push(`${session.user.role}/dashboard`);
+          router.push(`${session.user.role.roleType}/dashboard`);
         }
       }
       if (result?.status === 200 && result.error === "Something went wrong") {
@@ -46,6 +46,7 @@ const LoginComponent = () => {
       setLoading(false);
     }
   };
+
   return (
     <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">

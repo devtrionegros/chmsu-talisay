@@ -7,10 +7,12 @@ export async function POST(request: NextRequest) {
     const ses = new SES();
     const { emailHtml, to } = await request.json();
 
+    console.log(to);
+
     const params = {
       Source: "joshuaarnaez22@gmail.com",
       Destination: {
-        ToAddresses: ["joshuaarnaez22@gmail.com"],
+        ToAddresses: to,
       },
       Message: {
         Body: {
@@ -26,7 +28,7 @@ export async function POST(request: NextRequest) {
       },
     };
 
-    const res = await ses.sendEmail(params);
+    await ses.sendEmail(params);
     return NextResponse.json(
       { message: "Email sent successfully" },
       { status: 200 }

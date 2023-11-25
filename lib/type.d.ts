@@ -46,7 +46,10 @@ interface UserObject {
     updatedAt: string;
     username: string;
     email: string;
-    role: "admin" | "user" | "guest"; // Add other possible role values as needed
+    role: {
+      id: string;
+      roleType: string;
+    }; // Add other possible role values as needed
   };
   expires: string;
 }

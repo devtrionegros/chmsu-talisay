@@ -6,6 +6,7 @@ export default withAuth(
   function middleware(req) {
     const role = req.nextauth.token?.role;
     const pathName = req.nextUrl.pathname;
+
     if (
       (pathName.startsWith("/admin") && role !== "admin") ||
       (pathName.startsWith("/user") && role !== "user")

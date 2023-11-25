@@ -1,7 +1,5 @@
 import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
 import { NextRequest, NextResponse } from "next/server";
-import { currentDateString } from "@/lib/dates";
-import { v4 as uuidv4 } from "uuid";
 
 export async function POST(request: NextRequest) {
   try {
@@ -9,11 +7,10 @@ export async function POST(request: NextRequest) {
     const imageData = await request.formData();
 
     const file = imageData.get("file") as File | null;
+    const fileName = imageData.get("fileName") as string;
     if (!file) {
       return NextResponse.json({ error: "No file provided" }, { status: 400 });
     }
-
-    const fileName = `${currentDateString()}/${uuidv4()}@${file.name}`;
 
     const Body = (await file.arrayBuffer()) as Buffer;
     const contentType = file.type;

@@ -24,6 +24,9 @@ export const authOptions: NextAuthOptions = {
             where: {
               email: credentials.email,
             },
+            include: {
+              role: true,
+            },
           });
 
           if (!user || !user?.password) {
@@ -42,6 +45,8 @@ export const authOptions: NextAuthOptions = {
           }
 
           const removedSensitiveData = _.omit(user, ["password"]);
+          console.log(removedSensitiveData);
+
           return removedSensitiveData;
         } catch (error) {
           console.log(error);
@@ -54,19 +59,19 @@ export const authOptions: NextAuthOptions = {
     async jwt({ token, user }: any) {
       /* Step 1: update the token based on the user object */
       if (user) {
-        token.role = user.role;
+        token.role = user.role.roleType;
         token.user = user;
       }
       return token;
     },
     session({ session, token }: any) {
+      console.log({ token });
+
       //  Step 2: update the session.user based on the token object */
       if (token && session.user) {
         session.user.role = token.role;
         session.user = token.user;
       }
-      console.log(session);
-
       return session;
     },
   },

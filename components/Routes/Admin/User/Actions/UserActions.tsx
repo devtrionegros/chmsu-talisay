@@ -45,7 +45,7 @@ const UserActions = () => {
 
       {/* MODAL */}
       <Modal {...{ isOpen, closeModal, title: "Add User" }}>
-        <UserAddModalContent />
+        <UserAddModalContent closeModal={closeModal} />
       </Modal>
     </>
   );
