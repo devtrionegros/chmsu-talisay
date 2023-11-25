@@ -5,8 +5,10 @@ import { useForm, FormProvider } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { UserSchema } from "@/lib/schema";
 import axios from "axios";
-import { addPhoto } from "@/lib/apicalls";
+import { addPhoto, sendEmail } from "@/lib/apicalls";
 import toast from "react-hot-toast";
+import { render } from "@react-email/render";
+import Email from "@/components/Shared/Email/Email";
 
 const UserAddModalContent = () => {
   const methods = useForm({
@@ -20,13 +22,19 @@ const UserAddModalContent = () => {
     try {
       const formData = new FormData();
       formData.append("file", data.photo);
-      console.log(formData);
+      const emailHtml = render(<Email />);
 
-      const response = await axios.post(addPhoto, formData);
-      console.log(response);
+      const [imageResponse, emailResponse] = await Promise.all([
+        axios.post(addPhoto, formData),
+        axios.post(sendEmail, { emailHtml, to: data.email }),
+      ]);
+      console.log(imageResponse);
+      console.log(emailResponse);
 
       toast.success("upload successfully");
-    } catch (error) {}
+    } catch (error) {
+      toast.error("Something went wrong");
+    }
   };
 
   const cancel = () => {

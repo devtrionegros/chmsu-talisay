@@ -20,8 +20,6 @@ const MenuItem = ({ title, Icon, redirect }: MenuItemProps) => {
     if (redirect) router.push(redirect);
   };
 
-  console.log(pathname);
-
   const isActive =
     (pathname.includes("/dashboard") && redirect?.includes("dashboard")) ||
     pathname === redirect ||
