@@ -10,6 +10,8 @@ const LoginPage = async () => {
 
   if (session !== null) {
     // redirect("/admin/users");
+    console.log("from server", session.user.role.roleType);
+
     return redirect(`${session.user.role.roleType}/dashboard`);
   } else {
     return <UserLoginComponent />;

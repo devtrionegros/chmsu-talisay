@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request: NextRequest) {
   try {
+    console.log("v1/protected/sms api has been triggered");
     const client = new SNSClient();
     // const { body, number } = await request.json();
 

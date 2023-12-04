@@ -36,3 +36,7 @@ export const UserSchema = yup.object().shape({
       return ["image/jpeg", "image/jpg", "image/png"].includes(value.type); // Allowed image file types
     }),
 });
+
+export const ClearanceSchema = yup.object().shape({
+  clearance: yup.string().required("Clearance is required"),
+});

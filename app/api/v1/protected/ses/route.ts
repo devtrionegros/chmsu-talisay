@@ -4,6 +4,8 @@ import { SES } from "@aws-sdk/client-ses";
 export const dynamic = "force-dynamic";
 export async function POST(request: NextRequest) {
   try {
+    console.log("v1/protected/ses api has been triggered");
+
     const ses = new SES();
     const { emailHtml, to } = await request.json();
 

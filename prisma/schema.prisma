@@ -21,6 +21,8 @@ model User {
   roleId String
   role   Role   @relation(fields: [roleId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 
+  approver Approver[]
+
   @@index([roleId])
 }
 
@@ -30,6 +32,7 @@ model Profile {
   userId       String  @unique
   address      String
   mobileNumber String?
+  img          String?
 
   @@index([userId])
 }
@@ -38,4 +41,48 @@ model Role {
   id       String @id @default(uuid())
   user     User[]
   roleType String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model ClearanceForm {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  requirements Requirement[]
+  approvers    Approver[]
+
+  clearance   Clearance @relation(fields: [clearanceId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  clearanceId String
+
+  @@index([clearanceId])
+}
+
+model Clearance {
+  id          String  @id @default(uuid())
+  name        String
+  description String?
+
+  clearanceForm ClearanceForm[]
+}
+
+model Requirement {
+  id          String  @id @default(uuid())
+  name        String
+  description String?
+
+  clearanceForm ClearanceForm[]
+}
+
+model Approver {
+  id String @id @default(uuid())
+
+  clearanceForm ClearanceForm[]
+
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  userId String @unique
+
+  @@index([userId])
 }

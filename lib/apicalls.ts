@@ -3,3 +3,5 @@ const type = ["protected", "private"];
 export const getUsers = `/api/${version}/${type[0]}/user`;
 export const addPhoto = `/api/${version}/${type[0]}/upload`;
 export const sendEmail = `/api/${version}/${type[0]}/ses`;
+export const clearance = `/api/${version}/${type[0]}/clearance`;
+export const requirements = `/api/${version}/${type[0]}/requirements`;

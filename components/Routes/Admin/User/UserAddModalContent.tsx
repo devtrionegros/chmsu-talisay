@@ -30,12 +30,14 @@ const UserAddModalContent = ({ closeModal }: ContentProps) => {
       formData.append("file", data.photo);
 
       const fileName = `${currentDateString()}/${uuidv4()}@${data.photo.name}`;
+      console.log(fileName);
+
       formData.append("fileName", fileName);
 
       const emailHtml = render(<Email username={data.fname} />);
       await Promise.all([
         axios.post(addPhoto, formData),
-        axios.post(sendEmail, { emailHtml, to: [data.email] }),
+        // axios.post(sendEmail, { emailHtml, to: [data.email] }),
       ]);
       toast.success("upload successfully");
     } catch (error) {

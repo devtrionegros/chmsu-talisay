@@ -32,6 +32,7 @@ interface ListProps {
 interface FadeProps {
   children: React.ReactNode;
   show: boolean;
+  closeStyle?: boolean;
 }
 
 interface DropdownProps {

@@ -31,10 +31,10 @@ const LoginComponent = () => {
 
       if (result?.status === 200 && result?.error === null) {
         const session = (await getSession()) as UserObject;
-
         if (session) {
           toast.success(`Welcome ${session.user.email}`);
           router.push(`${session.user.role.roleType}/dashboard`);
+          console.log("from client", session.user.role.roleType);
         }
       }
       if (result?.status === 200 && result.error === "Something went wrong") {

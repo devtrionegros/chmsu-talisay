@@ -45,8 +45,6 @@ export const authOptions: NextAuthOptions = {
           }
 
           const removedSensitiveData = _.omit(user, ["password"]);
-          console.log(removedSensitiveData);
-
           return removedSensitiveData;
         } catch (error) {
           console.log(error);
@@ -65,8 +63,6 @@ export const authOptions: NextAuthOptions = {
       return token;
     },
     session({ session, token }: any) {
-      console.log({ token });
-
       //  Step 2: update the session.user based on the token object */
       if (token && session.user) {
         session.user.role = token.role;
@@ -81,7 +77,7 @@ export const authOptions: NextAuthOptions = {
   },
   session: {
     strategy: "jwt",
-    maxAge: 600,
+    maxAge: 3600,
   },
   debug: process.env.NODE_ENV === "development",
 };
