@@ -47,7 +47,7 @@ export async function GET(request: NextRequest) {
 
     const client = new S3Client();
     const params = {
-      Bucket: "chmsu-bucket-dev",
+      Bucket: process.env.AWS_S3_BUCKET_NAME,
       Key: "2023-12-04/915cce91-6621-42da-969a-8ff6d859b2bb@photo-1586407014176-b592d6e2d16b.jpg",
     };
     const command = new GetObjectCommand(params);

@@ -63,6 +63,13 @@ const UserAddModalContent = ({ closeModal }: ContentProps) => {
               name="lname"
             />
             <TextField
+              type="string"
+              label="Mobile Number"
+              placeholder="Mobile Number"
+              name="number"
+              isMobile
+            />
+            <TextField
               type="email"
               label="Email"
               placeholder="Email"

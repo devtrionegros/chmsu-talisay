@@ -12,6 +12,7 @@ export type InputProps = {
   type: "string" | "number" | "email" | "password";
   placeholder: string;
   name: string;
+  isMobile?: boolean;
 };
 
 interface UploadProps {

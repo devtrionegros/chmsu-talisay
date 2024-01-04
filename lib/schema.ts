@@ -3,6 +3,13 @@ import * as yup from "yup";
 export const UserSchema = yup.object().shape({
   fname: yup.string().required("Firstname is required"),
   lname: yup.string().required("Lastname is required"),
+  number: yup
+    .string()
+    .required("Phone number is required")
+    .matches(
+      /^[9]\d{9}$/,
+      "Invalid phone number. Must start with 9 and have 10 digits"
+    ),
   gender: yup
     .string()
     .oneOf(["Male", "Female"], "Invalid gender")

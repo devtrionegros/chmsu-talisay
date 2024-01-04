@@ -1,7 +1,9 @@
 const version = process.env.API_VERSION || "v1";
 const type = ["protected", "private"];
-export const getUsers = `/api/${version}/${type[0]}/user`;
-export const addPhoto = `/api/${version}/${type[0]}/upload`;
-export const sendEmail = `/api/${version}/${type[0]}/ses`;
-export const clearance = `/api/${version}/${type[0]}/clearance`;
-export const requirements = `/api/${version}/${type[0]}/requirements`;
+const baseApi = `/api/${version}/${type[0]}`;
+
+export const getUsers = `${baseApi}/user`;
+export const addPhoto = `${baseApi}/upload`;
+export const sendEmail = `${baseApi}/ses`;
+export const clearance = `${baseApi}/clearance`;
+export const requirements = `${baseApi}/requirements`;
