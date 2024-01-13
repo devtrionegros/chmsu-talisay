@@ -14,7 +14,7 @@ import { initialState, loadingReducer } from "./Hooks/useReducerUsers";
 import LoadingComponent from "@/components/Shared/Loading";
 import { userTableHeaders, itemsPerPage, itemsPerApiCall } from "@/lib/util";
 import axios from "axios";
-import { TbLoader2 } from "react-icons/tb";
+import TableLoader from "@/components/Shared/TableLoader.tsx";
 
 const iconClassName = {
   className: "mr-2 h-5 w-5 text-violet-400",
@@ -70,12 +70,7 @@ const UserTable = () => {
       // click: deleteUser,
     },
   ];
-  if (loading && !users.length)
-    return (
-      <div className="text-center animate-bounce font-semibold text-xl">
-        Loading records....
-      </div>
-    );
+  if (loading && !users.length) return <TableLoader />;
   if (!users?.length) {
     return <div className="text-center ">No Records Found</div>;
   }

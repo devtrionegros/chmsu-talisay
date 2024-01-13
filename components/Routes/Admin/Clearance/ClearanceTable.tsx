@@ -11,10 +11,8 @@ import {
 } from "@/components/Shared";
 import { getUsers } from "@/lib/apicalls";
 import { initialState, loadingReducer } from "./Hooks/useReducerUsers";
-import LoadingComponent from "@/components/Shared/Loading";
 import { userTableHeaders, itemsPerPage, itemsPerApiCall } from "@/lib/util";
 import axios from "axios";
-import { TbLoader2 } from "react-icons/tb";
 import TableLoader from "@/components/Shared/TableLoader.tsx";
 
 const iconClassName = {

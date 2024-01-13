@@ -4,7 +4,6 @@ export { default as usePagination } from "./Hooks/usePagination";
 export { default as Select } from "./Inputs/Select";
 export { default as TextField } from "./Inputs/TextField";
 export { default as Upload } from "./Inputs/Upload";
-export { default as Loader } from "./Loader";
 
 export { default as Navbar } from "./Navbar";
 export { default as Pagination } from "./Pagination";
